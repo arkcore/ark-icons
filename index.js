@@ -89,6 +89,6 @@ exports.init = function (route, app, opts) {
     app.locals.iconDeclaration = htmlDeclaration;
 
     app.use(route, express.static(iconPath, opts.serve || {}));
-    app.get(route + '/manifest.json', arkIcons.AndroidManifest(route));
-    app.get(route + '/browserconfig.xml', arkIcons.WindowsPhoneConfig(route));
+    app.get(route + '/manifest.json', exports.AndroidManifest(route));
+    app.get(route + '/browserconfig.xml', exports.WindowsPhoneConfig(route));
 }

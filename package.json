@@ -1,6 +1,6 @@
 {
   "name": "ark-icons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Ark.com, Inc. icon sets",
   "main": "index.js",
   "dependencies": {
