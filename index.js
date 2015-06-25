@@ -85,7 +85,7 @@ exports.init = function (route, app, opts) {
     // specify manually
     var express = require('express');
     var iconPath = exports.iconPath();
-    var htmlDeclaration= exports.htmlDeclaration(path, opts);
+    var htmlDeclaration = exports.htmlDeclaration(path, opts);
     app.locals.iconDeclaration = htmlDeclaration;
 
     app.use(route, express.static(iconPath, opts.serve || {}));
