@@ -5,9 +5,9 @@ var fs = require('fs');
 var path = require('path');
 
 // templates
-var BrowserConfigXML = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'browserconfig.xml.hbs')));
-var ManifestJSON = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'manifest.json.hbs')));
-var HTMLDeclaration = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'partial.hbs')));
+var BrowserConfigXML = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'browserconfig.xml.hbs'), 'utf-8'));
+var ManifestJSON = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'manifest.json.hbs'), 'utf-8'));
+var HTMLDeclaration = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'partial.hbs'), 'utf-8'));
 
 /**
  * Returns compiled android manifest
