@@ -18,7 +18,7 @@ exports.AndroidManifest = function (route) {
         throw new Error('`route` must be specified as first argument');
     }
 
-    var manifest = ManifestJSON({ path: route });
+    var manifest = ManifestJSON({ path: route.replace(/\//g, '\\/') });
     return function serveAndroidManifest(req, res, next) {
         res.set('content-type', 'application/json');
         res.send(manifest);
