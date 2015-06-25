@@ -13,12 +13,12 @@ var HTMLDeclaration = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'p
  * Returns compiled android manifest
  * @param {String} path - webserver must serve the file by path + '/manifest.json'
  */
-exports.AndroidManifest = function (path) {
-    if (!path) {
-        throw new Error('`path` must be specified as first argument');
+exports.AndroidManifest = function (route) {
+    if (typeof route !== 'string') {
+        throw new Error('`route` must be specified as first argument');
     }
 
-    var manifest = ManifestJSON({ path: path });
+    var manifest = ManifestJSON({ path: route });
     return function serveAndroidManifest(req, res, next) {
         res.set('content-type', 'application/json');
         res.send(manifest);
@@ -29,12 +29,12 @@ exports.AndroidManifest = function (path) {
  * Returns compiled WP manifest
  * @param {String} path - webserver must serve the file by path + '/browserconfig.xml'
  */
-exports.WindowsPhoneConfig = function (path) {
-    if (!path) {
-        throw new Error('`path` must be specified as first argument');
+exports.WindowsPhoneConfig = function (route) {
+    if (typeof route !== 'string') {
+        throw new Error('`route` must be specified as first argument');
     }
 
-    var browserConfig = BrowserConfigXML({ path: path });
+    var browserConfig = BrowserConfigXML({ path: route });
     return function serveBrowserConfig(req, res, next) {
         res.set('content-type', 'application/xml');
         res.send(browserConfig);
@@ -51,19 +51,19 @@ exports.iconPath = function () {
 
 /**
  * Returns compiled html that should be embedded in the <head> section of the markup
- * @param  {String} path - images and manifests must be served by path + '/<image name>'
+ * @param  {String} route - images and manifests must be served by route + '/<image name>'
  * @param  {Object} opts - { apple, android, wp } set one or all options to `false` to disable them
  * @return {String}      - html content to be embedded
  */
-exports.htmlDeclaration = function (path, opts) {
+exports.htmlDeclaration = function (route, opts) {
     opts = opts || {};
 
-    if (!path) {
+    if (typeof route !== 'string') {
         throw new Error('`path` must be specified as first argument');
     }
 
     var locals = {
-        path: path,
+        path: route,
         INCLUDE_APPLE: opts.hasOwnProperty('apple') ? !!opts.apple : true,
         INCLUDE_ANDROID: opts.hasOwnProperty('android') ? !!opts.android : true,
         INCLUDE_WP: opts.hasOwnProperty('wp') ? !!opts.wp : true
@@ -85,7 +85,7 @@ exports.init = function (route, app, opts) {
     // specify manually
     var express = require('express');
     var iconPath = exports.iconPath();
-    var htmlDeclaration = exports.htmlDeclaration(path, opts);
+    var htmlDeclaration = exports.htmlDeclaration(route, opts);
     app.locals.iconDeclaration = htmlDeclaration;
 
     app.use(route, express.static(iconPath, opts.serve || {}));
