@@ -10,6 +10,6 @@ gulp.task('default', function () {
 });
 
 gulp.task('ico', function () {
-    return gulp.src('src/*.icon')
+    return gulp.src('src/*.ico')
         .pipe(gulp.dest('lib'));
 });
