@@ -1,12 +1,14 @@
 {
   "name": "ark-icons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ark.com, Inc. icon sets",
   "main": "index.js",
   "dependencies": {
-    "gulp": "^3.9.0",
-    "gulp-imagemin": "^2.3.0",
     "handlebars": "^3.0.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-imagemin": "^2.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
